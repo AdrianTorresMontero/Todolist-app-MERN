@@ -16,29 +16,31 @@ body{
 }
 
 form{
+  display: flex;
   position: relative;
 }
 
 input{
-  width: 90%;
+  width: 100%;
   padding: 10px;
   font-size: 17px;
   border: none;
   border-radius: 40px;
+  outline: none;
 }
 button{
   padding: 10px 1rem;
   font-size: 17px;
   border: none;
-  border-radius: 40px;
-  color: black;
+  border-radius: 10px;
+  color: rgb(59, 59, 59);
   cursor: pointer;
   transition: 0.4s;
 }
 .add{
   background-color: lightgreen;
   position: absolute;
-  right: 60px;
+  right: 0%;
 }
 .add:hover{
   background-color: rgb(85, 235, 85);
@@ -63,6 +65,7 @@ p{
 }
 .delete{
   background-color: rgb(197, 0, 0);
+  color: rgb(219, 219, 219);
 }
 .delete:hover{
   background-color: rgb(255, 61, 61);

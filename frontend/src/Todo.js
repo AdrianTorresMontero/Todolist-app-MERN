@@ -1,5 +1,6 @@
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import axios from 'axios'
+import useFetch from "./custom/useFetch";
 
 const Todo = () => {
   const url=process.env.REACT_APP_URL;
@@ -15,7 +16,6 @@ const Todo = () => {
       await axios.post(url,{
         todo
       })
-      
     } catch (error) {
       console.log(error);
     }
@@ -32,29 +32,7 @@ const Todo = () => {
     }
   }
 
-  useEffect(()=>{
-    const fetching=async()=>{
-      try {
-        const data = await axios.get(url)
-        setTask(data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetching()
-  },[])
-
-  useEffect(()=>{
-    const fetching=async()=>{
-      try {
-        const data = await axios.get(url)
-        setTask(data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetching()
-  },[tasks])
+  useFetch(axios, url, setTask,tasks);
 
   return ( 
     <div>
@@ -68,7 +46,7 @@ const Todo = () => {
           <p>{task.task}</p>
           <button className="delete" onClick={()=>handleDelete(task)}>Delete</button>
         </div>
-        
+
       ))}
     </div>
   );
