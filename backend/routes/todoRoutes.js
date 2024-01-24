@@ -1,25 +1,10 @@
 const router = require('express').Router();
-const Todo = require('../models/todoModel');
+const todoController = require('../controllers/todoControllers');
 
-router.get('/',(req,res)=>{
-  Todo.find().then(resp=>res.json(resp))
-})
+router.get('/',todoController.todo_show);
 
-router.post('/', async(req,res)=>{
-  const {todo}= req.body
+router.post('/', todoController.todo_post);
 
-  const data={
-    task:todo
-  }
-
-  //inserting data to mongodb
-  await Todo.insertMany([data])
-})
-
-
-router.delete('/', async(req, res)=>{
-  await Todo.findOneAndDelete(req.body);
-  res.status(200).send({ message: 'Task deleted successfully' });
-})
+router.delete('/', todoController.todo_delete);
 
 module.exports = router
